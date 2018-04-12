@@ -1,0 +1,454 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ffffff url('../img/geometry2.png');
+    /* Background pattern from Subtle Patterns */
+    font-family: 'Coda', cursive;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 45px;
+}
+
+/*
+ * Styles for the deck of cards
+ */
+
+.deck {
+    width: 650px;
+    min-height: 650px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+    transform: rotateY(0);
+    background: #02b3e4;
+    cursor: default;
+}
+
+.deck .card.show {
+    font-size: 40px;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    font-size: 40px;
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    text-align: left;
+    width: 600px;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
+}
+
+/* 
+* Styles for the Timer
+*/
+
+.time {
+    display: inline-block;
+}
+
+#minutes {
+    margin-left: 20px;
+}
+
+#seconds {
+    margin-left: -3px;
+}
+
+/* 
+* Styles for the Message Box
+*/
+
+.message {
+    background: #2e3d4994;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    width: 500px;
+    height: 350px;
+    margin: -175px 0 0 -250px;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.message > * {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+.how-much-time {
+    margin-top: -5px;
+}
+
+.how-many-stars {
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+    color: black;
+}
+
+.how-many-stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.repeat {
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 22px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    background-color: #75a0c4;
+    border: none;
+    display: block;
+}
+
+/* 
+* Styles for the added classes by JS 
+*/
+
+.blur {
+    filter: blur(5px);
+}
+
+.rotate {
+    transform: rotateY (180deg);
+    transition: 0.7s;
+}
+
+.reverse {
+    transform: rotateY(0);
+    transition: 0.7s;
+}
+
+.star {
+    color: rgb(241, 206, 2);
+}
+
+.deck .card.danger {
+    background: rgb(175, 0, 0);
+}
+
+/* 
+* Media Queries 
+*/
+
+@media screen and (max-width: 999px) {
+
+    h1 {
+        font-size: 30px;
+    }
+
+    /*
+     * Styles for the deck of cards
+     */
+    .deck {
+        width: 550px;
+        min-height: 500px;
+    }
+
+    .deck .card {
+        height: 100px;
+        width: 100px;
+    }
+
+    /*
+     * Styles for the Score Panel
+     */
+    .score-panel {
+        width: 450px;
+        font-size: 20px;
+    }
+
+}
+
+@media screen and (max-width: 620px) {
+
+    h1 {
+        font-size: 28px;
+    }
+
+    /*
+     * Styles for the deck of cards
+     */
+    .deck {
+        width: 450px;
+        min-height: 450px;
+    }
+
+    .deck .card {
+        height: 80px;
+        width: 80px;
+    }
+
+    .deck .card.show {
+        font-size: 30px;
+    }
+
+    .deck .card.match {
+        font-size: 30px;
+    }
+
+    /*
+     * Styles for the Score Panel
+     */
+    .score-panel {
+        width: 350px;
+        font-size: 18px;
+    }
+
+    /*
+     * Styles for the Message Box
+     */
+    .message p,
+    .message ul {
+        margin: 7px;
+    }
+
+    .message {
+        top: 60%;
+        left: 65%;
+        width: 350px;
+        height: 250px;
+        font-size: 18px;
+    }
+
+    .repeat {
+        font-size: 18px;
+        width: 90px;
+        height: 30px;
+        padding: 0;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+
+    h1 {
+        font-size: 25px;
+    }
+
+    /*
+     * Styles for the deck of cards
+     */
+    .deck {
+        width: 350px;
+        min-height: 380px;
+    }
+
+    .deck .card {
+        height: 60px;
+        width: 60px;
+    }
+
+    /*
+     * Styles for the Score Panel
+     */
+    .score-panel {
+        width: 300px;
+        font-size: 16px;
+    }
+
+    /*
+     * Styles for the Message Box
+     */
+     .message p,
+    .message ul {
+        margin: 4px;
+    }
+    
+    .message {
+        top: 60%;
+        left: 75%;
+        width: 250px;
+        height: 200px;
+        font-size: 16px;
+    }
+
+    .repeat {
+        font-size: 16px;
+        width: 80px;
+        height: 26px;
+    }
+
+}
+
+@media screen and (max-width: 380px) {
+
+    /*
+     * Styles for the deck of cards
+     */
+    .deck {
+        width: 280px;
+        min-height: 320px;
+        padding: 20px;
+    }
+
+    .deck .card {
+        height: 50px;
+        width: 50px;
+    }
+
+    .deck .card.show {
+        font-size: 22px;
+    }
+
+    .deck .card.match {
+        font-size: 22px;
+    }
+
+    /*
+     * Styles for the Score Panel
+     */
+    .score-panel {
+        width: 250px;
+    }
+
+
+    /*
+     * Styles for the Message Box
+     */    
+    .message {
+        top: 65%;
+        left: 95%;
+        width: 200px;
+        height: 150px;
+        font-size: 10px;
+    }
+
+    .repeat {
+        font-size: 10px;
+        width: 50px;
+        height: 20px;
+    }
+
+}
+
+@media screen and (max-width: 250px) {
+
+    h1 {
+        font-size: 18px;
+    }
+
+    /*
+     * Styles for the deck of cards
+     */
+    .deck {
+        width: 220px;
+        min-height: 250px;
+        padding: 10px;
+    }
+
+    .deck .card {
+        height: 45px;
+        width: 45px;
+    }
+
+    .deck .card.show {
+        font-size: 20px;
+    }
+
+    .deck .card.match {
+        font-size: 20px;
+    }
+
+    /*
+     * Styles for the Score Panel
+     */
+    .score-panel {
+        width: 190px;
+        font-size: 12px;
+    }
+
+    /*
+     * Styles for the Message Box
+     */
+    .message {
+        top: 68%;
+        left: 256px;
+    }
+}
